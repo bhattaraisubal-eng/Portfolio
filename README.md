@@ -2,7 +2,7 @@
 
 Personal portfolio site showcasing my projects and skills.
 
-**Live:** [subal-bhattarai.vercel.app](https://subal-bhattarai.vercel.app)
+**Live:** [subal-b.vercel.app](https://subal-b.vercel.app)
 
 ## Tech Stack
 
