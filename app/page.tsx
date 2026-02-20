@@ -279,7 +279,7 @@ export default function Home() {
           </h2>
 
           <a
-            href="https://dev.to/bhattaraisubal"
+            href="https://dev.to/bhattaraisubaleng/hybrid-rag-system-over-sec-filings-2gj8"
             target="_blank"
             rel="noopener noreferrer"
             className="block rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 hover:border-zinc-700 transition-colors group"
