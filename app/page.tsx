@@ -88,6 +88,9 @@ export default function Home() {
             <a href="#projects" className="hover:text-white transition-colors">
               Projects
             </a>
+            <a href="#writing" className="hover:text-white transition-colors">
+              Writing
+            </a>
             <a href="#skills" className="hover:text-white transition-colors">
               Skills
             </a>
@@ -177,7 +180,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://sec-rag-system.vercel.app"
+                  href="https://sec-intelligence-system.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
@@ -186,7 +189,7 @@ export default function Home() {
                   <ExternalIcon className="h-3.5 w-3.5" />
                 </a>
                 <a
-                  href="https://github.com/bhattaraisubal-eng/sec-rag-system"
+                  href="https://github.com/bhattaraisubal-eng/sec-intelligence-system"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-zinc-400 hover:text-white transition-colors"
@@ -265,6 +268,53 @@ export default function Home() {
           <p className="text-sm text-zinc-600 mt-8 text-center font-mono">
             More projects coming soon.
           </p>
+        </div>
+      </section>
+
+      {/* Writing */}
+      <section id="writing" className="py-20 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
+            Writing
+          </h2>
+
+          <a
+            href="https://dev.to/bhattaraisubal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 hover:border-zinc-700 transition-colors group"
+          >
+            <div className="flex items-start justify-between mb-3">
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  Building a Multi-Route RAG System Over SEC Filings
+                </h3>
+                <p className="text-xs text-zinc-500 mt-1 font-mono">
+                  dev.to &middot; Deep Dive
+                </p>
+              </div>
+              <ExternalIcon className="h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors shrink-0 mt-1" />
+            </div>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+              A detailed walkthrough of every design decision behind the SEC
+              Filing Intelligence Engine — from the naive prototype that
+              hallucinated revenue numbers, through domain-specific nightmares
+              (fiscal year mismatches, XBRL tag renames, Q4 derivation), to
+              the 5-route retrieval architecture that finally worked.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {["RAG", "Python", "AI", "Fintech", "System Design"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded-md bg-zinc-800 text-xs font-mono text-zinc-500"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </a>
         </div>
       </section>
 
