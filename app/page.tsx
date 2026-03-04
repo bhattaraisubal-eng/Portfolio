@@ -133,20 +133,35 @@ function AnimatedNeuralNet() {
     { x: 270, ys: [105, 165] },
   ];
 
+  // Per-layer colors: emerald, cyan, violet, pink
+  const layerColors = [
+    { fill: "rgba(52, 211, 153, 0.5)", stroke: "rgba(52, 211, 153, 0.3)", ring: "rgba(52, 211, 153, 0.4)" },
+    { fill: "rgba(6, 182, 212, 0.5)", stroke: "rgba(6, 182, 212, 0.3)", ring: "rgba(6, 182, 212, 0.4)" },
+    { fill: "rgba(139, 92, 246, 0.5)", stroke: "rgba(139, 92, 246, 0.3)", ring: "rgba(139, 92, 246, 0.4)" },
+    { fill: "rgba(236, 72, 153, 0.5)", stroke: "rgba(236, 72, 153, 0.3)", ring: "rgba(236, 72, 153, 0.4)" },
+  ];
+
+  // Pulse colors between layers
+  const pulseColors = [
+    { faint: "rgba(52, 211, 153, 0.08)", bright: "rgba(52, 211, 153, 0.6)" },
+    { faint: "rgba(6, 182, 212, 0.08)", bright: "rgba(6, 182, 212, 0.6)" },
+    { faint: "rgba(139, 92, 246, 0.08)", bright: "rgba(139, 92, 246, 0.6)" },
+  ];
+
   // Build connections between adjacent layers
-  const connections: { x1: number; y1: number; x2: number; y2: number; delay: number }[] = [];
+  const connections: { x1: number; y1: number; x2: number; y2: number; delay: number; layer: number }[] = [];
   let ci = 0;
   for (let l = 0; l < layers.length - 1; l++) {
     for (const y1 of layers[l].ys) {
       for (const y2 of layers[l + 1].ys) {
-        connections.push({ x1: layers[l].x, y1, x2: layers[l + 1].x, y2, delay: ci % 12 });
+        connections.push({ x1: layers[l].x, y1, x2: layers[l + 1].x, y2, delay: ci % 12, layer: l });
         ci++;
       }
     }
   }
 
   return (
-    <svg viewBox="0 0 300 270" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 300 240" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="nn-glow">
           <feGaussianBlur stdDeviation="3" result="blur" />
@@ -159,7 +174,7 @@ function AnimatedNeuralNet() {
         <line
           key={`s${i}`}
           x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2}
-          stroke="rgba(52, 211, 153, 0.08)"
+          stroke={pulseColors[c.layer].faint}
           strokeWidth="1"
         />
       ))}
@@ -169,7 +184,7 @@ function AnimatedNeuralNet() {
         <line
           key={`p${i}`}
           x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2}
-          stroke="rgba(52, 211, 153, 0.6)"
+          stroke={pulseColors[c.layer].bright}
           strokeWidth="1.5"
           className={`nn-pulse nn-pulse-d${(c.delay % 12) + 1}`}
           strokeLinecap="round"
@@ -182,8 +197,8 @@ function AnimatedNeuralNet() {
           <circle
             key={`n${li}-${ni}`}
             cx={layer.x} cy={y} r="4"
-            fill="rgba(52, 211, 153, 0.5)"
-            stroke="rgba(52, 211, 153, 0.3)"
+            fill={layerColors[li].fill}
+            stroke={layerColors[li].stroke}
             strokeWidth="1"
             className={`nn-node nn-node-l${li}`}
             filter="url(#nn-glow)"
@@ -197,18 +212,12 @@ function AnimatedNeuralNet() {
           key={`ring${i}`}
           cx={layers[3].x} cy={y} r="8"
           fill="none"
-          stroke="rgba(52, 211, 153, 0.4)"
+          stroke={layerColors[3].ring}
           strokeWidth="1.5"
           className="nn-output-ring"
           style={{ animationDelay: `${2.2 + i * 0.3}s` }}
         />
       ))}
-
-      {/* Layer labels */}
-      <text x="30" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">input</text>
-      <text x="110" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">hidden</text>
-      <text x="190" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">hidden</text>
-      <text x="270" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">output</text>
     </svg>
   );
 }
@@ -318,16 +327,16 @@ export default function Home() {
       <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         <div className="hero-orb hero-orb-1 -top-40 -right-60" />
         <div className="hero-orb hero-orb-2 top-20 -left-40" />
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row lg:items-center lg:gap-8">
           {/* Text */}
-          <div className="animate-fade-up mb-12">
+          <div className="animate-fade-up flex-1 min-w-0">
             <p className="text-sm font-mono text-emerald-400/70 mb-3 animate-delay-1">
               Hi, I&apos;m
             </p>
-            <h1 className="text-7xl font-bold tracking-tighter mb-4">
+            <h1 className="text-5xl lg:text-6xl font-bold tracking-tighter mb-4">
               <span className="gradient-text">Subal Bhattarai</span>
             </h1>
-            <p className="text-xl gradient-text-subtle max-w-2xl leading-relaxed mb-10 animate-fade-up animate-delay-2 cursor-blink">
+            <p className="text-lg gradient-text-subtle max-w-xl leading-relaxed mb-8 animate-fade-up animate-delay-2 cursor-blink">
               I am a Systems Analyst who loves math, finance, and AI.
               Looking for opportunities at the intersection of it
             </p>
@@ -352,12 +361,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Venn + Neural Net side by side */}
-          <div className="hidden lg:flex items-center justify-center gap-12 animate-fade-in animate-delay-4">
-            <div className="w-[280px] shrink-0">
+          {/* Venn + Neural Net beside intro */}
+          <div className="hidden lg:flex items-center gap-6 shrink-0 animate-fade-in animate-delay-4">
+            <div className="w-[200px]">
               <VennDiagram />
             </div>
-            <div className="w-[320px] shrink-0">
+            <div className="w-[220px]">
               <AnimatedNeuralNet />
             </div>
           </div>

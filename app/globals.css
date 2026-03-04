@@ -226,27 +226,27 @@ body {
   to { stroke-dashoffset: -48; }
 }
 
-/* Nodes glow in layers with staggered timing */
-.nn-node {
-  animation: nn-node-glow 3s ease-in-out infinite;
+/* Nodes glow in layers with staggered timing and per-layer colors */
+.nn-node-l0 { animation: nn-glow-emerald 3s ease-in-out infinite; animation-delay: 0s; }
+.nn-node-l1 { animation: nn-glow-cyan 3s ease-in-out infinite; animation-delay: 0.6s; }
+.nn-node-l2 { animation: nn-glow-violet 3s ease-in-out infinite; animation-delay: 1.2s; }
+.nn-node-l3 { animation: nn-glow-pink 3s ease-in-out infinite; animation-delay: 1.8s; }
+
+@keyframes nn-glow-emerald {
+  0%, 100% { r: 4; opacity: 0.4; filter: drop-shadow(0 0 0px rgba(52, 211, 153, 0)); }
+  50% { r: 5.5; opacity: 0.9; filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.5)); }
 }
-
-.nn-node-l0 { animation-delay: 0s; }
-.nn-node-l1 { animation-delay: 0.6s; }
-.nn-node-l2 { animation-delay: 1.2s; }
-.nn-node-l3 { animation-delay: 1.8s; }
-
-@keyframes nn-node-glow {
-  0%, 100% {
-    r: 4;
-    opacity: 0.4;
-    filter: drop-shadow(0 0 0px rgba(52, 211, 153, 0));
-  }
-  50% {
-    r: 5.5;
-    opacity: 0.9;
-    filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.5));
-  }
+@keyframes nn-glow-cyan {
+  0%, 100% { r: 4; opacity: 0.4; filter: drop-shadow(0 0 0px rgba(6, 182, 212, 0)); }
+  50% { r: 5.5; opacity: 0.9; filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.5)); }
+}
+@keyframes nn-glow-violet {
+  0%, 100% { r: 4; opacity: 0.4; filter: drop-shadow(0 0 0px rgba(139, 92, 246, 0)); }
+  50% { r: 5.5; opacity: 0.9; filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.5)); }
+}
+@keyframes nn-glow-pink {
+  0%, 100% { r: 4; opacity: 0.4; filter: drop-shadow(0 0 0px rgba(236, 72, 153, 0)); }
+  50% { r: 5.5; opacity: 0.9; filter: drop-shadow(0 0 6px rgba(236, 72, 153, 0.5)); }
 }
 
 /* The outer ring pulse on the output node */
