@@ -75,7 +75,6 @@ function MailIcon({ className }: { className?: string }) {
 export default function Home() {
   return (
     <div className="min-h-screen dot-grid noise relative">
-      {/* Aurora background */}
       <div className="aurora" />
 
       {/* Nav */}
@@ -136,10 +135,10 @@ export default function Home() {
               </a>
               <a
                 href="mailto:bhattaraisubal@gmail.com"
-                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
+                className="group flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
               >
                 <MailIcon className="h-4 w-4" />
-                Get in Touch
+                bhattaraisubal@gmail.com
               </a>
             </div>
           </div>
@@ -153,90 +152,110 @@ export default function Home() {
             Projects
           </h2>
 
-          {/* SEC RAG System — clickable card */}
           <a
             href="https://github.com/bhattaraisubal-eng/sec-intelligence-system"
             target="_blank"
             rel="noopener noreferrer"
-            className="card-glow block rounded-xl glass p-8 group cursor-pointer"
+            className="mega-card block rounded-[0.875rem] glass p-0 group cursor-pointer"
           >
-            <div className="flex items-start justify-between mb-4">
-              <div>
+            {/* Terminal titlebar */}
+            <div className="flex items-center justify-between px-6 py-3 border-b border-white/[0.04]">
+              <div className="terminal-dots">
+                <span />
+                <span />
+                <span />
+              </div>
+              <span className="text-xs font-mono text-zinc-600 group-hover:text-zinc-400 transition-colors">
+                sec-intelligence-system
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="status-badge inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400 uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                  Live
+                </span>
+                <ExternalIcon className="arrow-slide h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors" />
+              </div>
+            </div>
+
+            {/* Card body */}
+            <div className="p-8">
+              <div className="mb-5">
                 <h3 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
                   SEC Filing Intelligence Engine
                 </h3>
-                <p className="text-sm text-zinc-500 mt-1 font-mono">
-                  Full-Stack RAG System
+                <p className="text-sm text-zinc-600 mt-1 font-mono">
+                  &gt; Full-Stack RAG System
                 </p>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1.5 text-sm text-emerald-400/60 group-hover:text-emerald-300 transition-colors">
-                  View on GitHub
-                  <ExternalIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
+
+              <p className="text-zinc-400 leading-relaxed mb-8 max-w-3xl">
+                AI-powered retrieval-augmented generation system for querying SEC
+                EDGAR filings using natural language. Covers the top 10 S&amp;P
+                500 companies with 1M+ structured XBRL data points and semantic
+                vector search across 10-K and 10-Q filings from 2010 to present.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                {[
+                  {
+                    icon: "\u2192",
+                    title: "5-Way Query Routing",
+                    desc: "Intelligent classification routes queries to metric lookup, timeseries, narrative search, hybrid, or full statement retrieval",
+                  },
+                  {
+                    icon: "\u2261",
+                    title: "Vector + Relational Retrieval",
+                    desc: "pgvector cosine similarity search with cross-encoder reranking, combined with structured XBRL financial data",
+                  },
+                  {
+                    icon: "\u2234",
+                    title: "Confidence Scoring",
+                    desc: "0-100 confidence with 5 weighted signals: retrieval quality, source coverage, cross-source agreement, citations, recency",
+                  },
+                  {
+                    icon: "\u25B6",
+                    title: "Real-time Streaming",
+                    desc: "SSE streaming with live classification display, retrieval plan animation, and progressive answer generation",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="feature-cell rounded-lg border border-white/[0.04] bg-white/[0.015] p-4 group-hover:border-white/[0.08] transition-all"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-emerald-400/60 font-mono text-sm">{item.icon}</span>
+                      <h4 className="text-sm font-semibold text-white">
+                        {item.title}
+                      </h4>
+                    </div>
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
-            </div>
 
-            <p className="text-zinc-400 leading-relaxed mb-6">
-              AI-powered retrieval-augmented generation system for querying SEC
-              EDGAR filings using natural language. Covers the top 10 S&amp;P
-              500 companies with 1M+ structured XBRL data points and semantic
-              vector search across 10-K and 10-Q filings from 2010 to present.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              {[
-                {
-                  title: "5-Way Query Routing",
-                  desc: "Intelligent classification routes queries to metric lookup, timeseries, narrative search, hybrid, or full statement retrieval",
-                },
-                {
-                  title: "Vector + Relational Retrieval",
-                  desc: "pgvector cosine similarity search with cross-encoder reranking, combined with structured XBRL financial data",
-                },
-                {
-                  title: "Confidence Scoring",
-                  desc: "0-100 confidence with 5 weighted signals: retrieval quality, source coverage, cross-source agreement, citations, recency",
-                },
-                {
-                  title: "Real-time Streaming",
-                  desc: "SSE streaming with live classification display, retrieval plan animation, and progressive answer generation",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-lg border border-white/[0.04] bg-white/[0.02] p-3 group-hover:border-white/[0.08] transition-colors"
-                >
-                  <h4 className="text-sm font-semibold text-white mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs text-zinc-500 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Python",
-                "FastAPI",
-                "React",
-                "PostgreSQL",
-                "pgvector",
-                "OpenAI",
-                "XBRL",
-                "SSE Streaming",
-                "Railway",
-                "Vercel",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-zinc-500 group-hover:text-zinc-400 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "FastAPI",
+                  "React",
+                  "PostgreSQL",
+                  "pgvector",
+                  "OpenAI",
+                  "XBRL",
+                  "SSE Streaming",
+                  "Railway",
+                  "Vercel",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="holo-tag relative px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.05] text-xs font-mono text-zinc-500"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </a>
 
@@ -257,81 +276,104 @@ export default function Home() {
             href="https://github.com/bhattaraisubal-eng/RAG-poisoning"
             target="_blank"
             rel="noopener noreferrer"
-            className="card-glow block rounded-xl glass p-8 group cursor-pointer"
+            className="mega-card block rounded-[0.875rem] glass p-0 group cursor-pointer"
           >
-            <div className="flex items-start justify-between mb-4">
-              <div>
+            {/* Terminal titlebar */}
+            <div className="flex items-center justify-between px-6 py-3 border-b border-white/[0.04]">
+              <div className="terminal-dots">
+                <span />
+                <span />
+                <span />
+              </div>
+              <span className="text-xs font-mono text-zinc-600 group-hover:text-zinc-400 transition-colors">
+                RAG-poisoning
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-[10px] font-mono text-violet-400 uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-violet-400 inline-block" />
+                  Experiment
+                </span>
+                <ExternalIcon className="arrow-slide h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors" />
+              </div>
+            </div>
+
+            {/* Card body */}
+            <div className="p-8">
+              <div className="mb-5">
                 <h3 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
                   RAG Poisoning in Multi-Agent LLM Systems
                 </h3>
-                <p className="text-sm text-zinc-500 mt-1 font-mono">
-                  Simple Experiment
+                <p className="text-sm text-zinc-600 mt-1 font-mono">
+                  &gt; Simple Experiment
                 </p>
               </div>
-              <span className="flex items-center gap-1.5 text-sm text-emerald-400/60 group-hover:text-emerald-300 transition-colors shrink-0">
-                View on GitHub
-                <ExternalIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
-            </div>
 
-            <p className="text-zinc-400 leading-relaxed mb-6">
-              A simple experiment exploring how poisoned documents in a RAG
-              knowledge base can manipulate multi-agent LLM systems into
-              exfiltrating sensitive data. The simulation uses an orchestrator
-              agent that reads from a shared knowledge base and delegates tasks
-              to a worker agent with database and email access, testing whether
-              injected payloads can trigger unauthorized PII extraction.
-            </p>
+              <p className="text-zinc-400 leading-relaxed mb-8 max-w-3xl">
+                A simple experiment exploring how poisoned documents in a RAG
+                knowledge base can manipulate multi-agent LLM systems into
+                exfiltrating sensitive data. The simulation uses an orchestrator
+                agent that reads from a shared knowledge base and delegates tasks
+                to a worker agent with database and email access, testing whether
+                injected payloads can trigger unauthorized PII extraction.
+              </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              {[
-                {
-                  title: "Controlled Simulation",
-                  desc: "Two-agent pipeline with orchestrator and worker roles, mock customer database, and email outbox for measuring exfiltration",
-                },
-                {
-                  title: "Payload Injection",
-                  desc: "Tests multiple attack strategies including direct instruction, authority impersonation, and multi-step social engineering",
-                },
-                {
-                  title: "Statistical Analysis",
-                  desc: "Chi-squared and Fisher\u2019s exact tests comparing exfiltration rates between poisoned and clean knowledge bases",
-                },
-                {
-                  title: "Defense Evaluation",
-                  desc: "Measures baseline vs. attacked success rates to quantify how vulnerable current LLM agent architectures are",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-lg border border-white/[0.04] bg-white/[0.02] p-3 group-hover:border-white/[0.08] transition-colors"
-                >
-                  <h4 className="text-sm font-semibold text-white mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs text-zinc-500 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                {[
+                  {
+                    icon: "\u229A",
+                    title: "Controlled Simulation",
+                    desc: "Two-agent pipeline with orchestrator and worker roles, mock customer database, and email outbox for measuring exfiltration",
+                  },
+                  {
+                    icon: "\u2620",
+                    title: "Payload Injection",
+                    desc: "Tests multiple attack strategies including direct instruction, authority impersonation, and multi-step social engineering",
+                  },
+                  {
+                    icon: "\u03C3",
+                    title: "Statistical Analysis",
+                    desc: "Chi-squared and Fisher\u2019s exact tests comparing exfiltration rates between poisoned and clean knowledge bases",
+                  },
+                  {
+                    icon: "\u2603",
+                    title: "Defense Evaluation",
+                    desc: "Measures baseline vs. attacked success rates to quantify how vulnerable current LLM agent architectures are",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="feature-cell rounded-lg border border-white/[0.04] bg-white/[0.015] p-4 group-hover:border-white/[0.08] transition-all"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-violet-400/60 font-mono text-sm">{item.icon}</span>
+                      <h4 className="text-sm font-semibold text-white">
+                        {item.title}
+                      </h4>
+                    </div>
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Python",
-                "OpenAI API",
-                "Multi-Agent Systems",
-                "RAG",
-                "Security Research",
-                "Statistical Testing",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-zinc-500 group-hover:text-zinc-400 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "OpenAI API",
+                  "Multi-Agent Systems",
+                  "RAG",
+                  "Security Research",
+                  "Statistical Testing",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="holo-tag relative px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.05] text-xs font-mono text-zinc-500"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </a>
         </div>
