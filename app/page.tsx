@@ -72,6 +72,131 @@ function MailIcon({ className }: { className?: string }) {
   );
 }
 
+function VennDiagram() {
+  return (
+    <div className="relative venn-container">
+      <svg viewBox="0 0 320 300" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          {/* Circle glow filters */}
+          <filter id="glow-emerald">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="glow-cyan">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="glow-violet">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="glow-center">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+
+        {/* Math circle — top left */}
+        <circle
+          cx="130" cy="115" r="90"
+          fill="rgba(52, 211, 153, 0.15)"
+          stroke="rgba(52, 211, 153, 0.25)"
+          strokeWidth="1"
+          className="venn-circle venn-circle-1"
+          filter="url(#glow-emerald)"
+        />
+
+        {/* Finance circle — top right */}
+        <circle
+          cx="190" cy="115" r="90"
+          fill="rgba(6, 182, 212, 0.15)"
+          stroke="rgba(6, 182, 212, 0.25)"
+          strokeWidth="1"
+          className="venn-circle venn-circle-2"
+          filter="url(#glow-cyan)"
+        />
+
+        {/* AI circle — bottom center */}
+        <circle
+          cx="160" cy="175" r="90"
+          fill="rgba(139, 92, 246, 0.15)"
+          stroke="rgba(139, 92, 246, 0.25)"
+          strokeWidth="1"
+          className="venn-circle venn-circle-3"
+          filter="url(#glow-violet)"
+        />
+
+        {/* Intersection labels — pairwise */}
+        <text x="160" y="92" textAnchor="middle" className="fill-zinc-600" fontSize="9" fontFamily="monospace">
+          quant models
+        </text>
+        <text x="108" y="162" textAnchor="middle" className="fill-zinc-600" fontSize="9" fontFamily="monospace">
+          optimization
+        </text>
+        <text x="212" y="162" textAnchor="middle" className="fill-zinc-600" fontSize="9" fontFamily="monospace">
+          algo trading
+        </text>
+
+        {/* Main labels */}
+        <g className="venn-label venn-label-1">
+          <text x="85" y="80" textAnchor="middle" fontSize="14" fontWeight="bold" className="fill-emerald-400">
+            Math
+          </text>
+          <text x="85" y="93" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-emerald-400/50">
+            {"\u2207 \u222B \u03A3 \u03C0"}
+          </text>
+        </g>
+
+        <g className="venn-label venn-label-2">
+          <text x="235" y="80" textAnchor="middle" fontSize="14" fontWeight="bold" className="fill-cyan-400">
+            Finance
+          </text>
+          <text x="235" y="93" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-cyan-400/50">
+            {"$ \u0394 \u03B1 \u03B2"}
+          </text>
+        </g>
+
+        <g className="venn-label venn-label-3">
+          <text x="160" y="245" textAnchor="middle" fontSize="14" fontWeight="bold" className="fill-violet-400">
+            AI
+          </text>
+          <text x="160" y="258" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-violet-400/50">
+            {"\u2207\u03B8 f(x) \u2248 0"}
+          </text>
+        </g>
+
+        {/* Center — "me" */}
+        <g className="venn-me" filter="url(#glow-center)">
+          <circle cx="160" cy="135" r="18" fill="rgba(52, 211, 153, 0.12)" stroke="rgba(52, 211, 153, 0.4)" strokeWidth="1.5" />
+          <text x="160" y="139" textAnchor="middle" fontSize="13" fontWeight="bold" className="fill-white">
+            me
+          </text>
+        </g>
+
+        {/* Floating decorative formulas */}
+        <text x="30" y="40" fontSize="10" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
+          E = mc&sup2;
+        </text>
+        <text x="250" y="35" fontSize="9" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
+          P(A|B)
+        </text>
+        <text x="15" y="270" fontSize="9" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
+          {"\u2202L/\u2202w"}
+        </text>
+        <text x="270" y="280" fontSize="10" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
+          {"\u03A3 r\u1D62\u00B7w\u1D62"}
+        </text>
+        <text x="40" y="155" fontSize="8" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.2">
+          Black-Scholes
+        </text>
+        <text x="260" y="200" fontSize="8" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.2">
+          softmax
+        </text>
+      </svg>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen dot-grid noise relative">
@@ -80,12 +205,9 @@ export default function Home() {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 glass">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="status-dot" />
-            <span className="font-mono text-sm font-bold gradient-text">
-              SB
-            </span>
-          </div>
+          <span className="font-mono text-sm font-bold gradient-text">
+            SB
+          </span>
           <div className="flex items-center gap-6 text-sm text-zinc-500">
             <a href="#projects" className="nav-link hover:text-white transition-colors">
               Projects
@@ -111,35 +233,43 @@ export default function Home() {
         <div className="hero-orb hero-orb-1 -top-40 -right-60" />
         <div className="hero-orb hero-orb-2 top-20 -left-40" />
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="animate-fade-up">
-            <p className="text-sm font-mono text-emerald-400/70 mb-3 animate-delay-1">
-              Hi, I&apos;m
-            </p>
-            <h1 className="text-7xl font-bold tracking-tighter mb-4">
-              <span className="gradient-text">Subal Bhattarai</span>
-            </h1>
-            <p className="text-xl gradient-text-subtle max-w-2xl leading-relaxed mb-10 animate-fade-up animate-delay-2 cursor-blink">
-              I am a Systems Analyst who loves math, finance, and AI.
-              Looking for opportunities at the intersection of it
-            </p>
-            <div className="flex items-center gap-4 animate-fade-up animate-delay-3">
-              <a
-                href="https://github.com/bhattaraisubal-eng"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-black text-sm font-semibold transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
-              >
-                <GithubIcon className="h-4 w-4" />
-                GitHub
-                <ExternalIcon className="h-3 w-3 opacity-0 -ml-1 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-              </a>
-              <a
-                href="mailto:bhattaraisubal@gmail.com"
-                className="group flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
-              >
-                <MailIcon className="h-4 w-4" />
-                bhattaraisubal@gmail.com
-              </a>
+          <div className="flex items-center gap-8 lg:gap-16">
+            {/* Left — text */}
+            <div className="flex-1 animate-fade-up">
+              <p className="text-sm font-mono text-emerald-400/70 mb-3 animate-delay-1">
+                Hi, I&apos;m
+              </p>
+              <h1 className="text-7xl font-bold tracking-tighter mb-4">
+                <span className="gradient-text">Subal Bhattarai</span>
+              </h1>
+              <p className="text-xl gradient-text-subtle max-w-2xl leading-relaxed mb-10 animate-fade-up animate-delay-2 cursor-blink">
+                I am a Systems Analyst who loves math, finance, and AI.
+                Looking for opportunities at the intersection of it
+              </p>
+              <div className="flex items-center gap-4 animate-fade-up animate-delay-3">
+                <a
+                  href="https://github.com/bhattaraisubal-eng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-black text-sm font-semibold transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
+                >
+                  <GithubIcon className="h-4 w-4" />
+                  GitHub
+                  <ExternalIcon className="h-3 w-3 opacity-0 -ml-1 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                </a>
+                <a
+                  href="mailto:bhattaraisubal@gmail.com"
+                  className="group flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
+                >
+                  <MailIcon className="h-4 w-4" />
+                  bhattaraisubal@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* Right — Venn Diagram */}
+            <div className="hidden lg:block w-[340px] shrink-0 animate-fade-in animate-delay-4">
+              <VennDiagram />
             </div>
           </div>
         </div>
@@ -168,12 +298,10 @@ export default function Home() {
               <span className="text-xs font-mono text-zinc-600 group-hover:text-zinc-400 transition-colors">
                 sec-intelligence-system
               </span>
-              <div className="flex items-center gap-2">
-                <span className="status-badge inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400 uppercase tracking-wider">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                  Live
-                </span>
-                <ExternalIcon className="arrow-slide h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors" />
+              <div className="flex items-center gap-1.5 text-zinc-500 group-hover:text-emerald-400 transition-colors">
+                <GithubIcon className="h-4 w-4" />
+                <span className="text-xs font-mono">GitHub</span>
+                <ExternalIcon className="arrow-slide h-3.5 w-3.5" />
               </div>
             </div>
 
@@ -288,12 +416,10 @@ export default function Home() {
               <span className="text-xs font-mono text-zinc-600 group-hover:text-zinc-400 transition-colors">
                 RAG-poisoning
               </span>
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-[10px] font-mono text-violet-400 uppercase tracking-wider">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-400 inline-block" />
-                  Experiment
-                </span>
-                <ExternalIcon className="arrow-slide h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors" />
+              <div className="flex items-center gap-1.5 text-zinc-500 group-hover:text-emerald-400 transition-colors">
+                <GithubIcon className="h-4 w-4" />
+                <span className="text-xs font-mono">GitHub</span>
+                <ExternalIcon className="arrow-slide h-3.5 w-3.5" />
               </div>
             </div>
 

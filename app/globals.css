@@ -143,6 +143,68 @@ body {
   50% { background-position: 0% 0; }
 }
 
+/* ═══ VENN DIAGRAM ═══ */
+
+.venn-container {
+  animation: venn-breathe 6s ease-in-out infinite;
+}
+
+@keyframes venn-breathe {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.02) rotate(1deg); }
+}
+
+.venn-circle {
+  animation: venn-pulse 4s ease-in-out infinite;
+}
+
+.venn-circle-1 { animation-delay: 0s; }
+.venn-circle-2 { animation-delay: 1.3s; }
+.venn-circle-3 { animation-delay: 2.6s; }
+
+@keyframes venn-pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.22; }
+}
+
+.venn-label {
+  animation: label-float 5s ease-in-out infinite;
+}
+
+.venn-label-1 { animation-delay: 0s; }
+.venn-label-2 { animation-delay: 1.7s; }
+.venn-label-3 { animation-delay: 3.4s; }
+
+@keyframes label-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.venn-me {
+  animation: me-glow 3s ease-in-out infinite;
+}
+
+@keyframes me-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.3)); }
+  50% { filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.6)); }
+}
+
+/* Floating math symbols */
+.float-symbol {
+  position: absolute;
+  font-family: 'Georgia', serif;
+  pointer-events: none;
+  opacity: 0;
+  animation: float-drift 12s ease-in-out infinite;
+}
+
+@keyframes float-drift {
+  0% { opacity: 0; transform: translateY(10px); }
+  15% { opacity: 0.12; }
+  85% { opacity: 0.12; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
 /* ═══ MEGA CARD — TERMINAL WINDOW ═══ */
 
 .mega-card {
@@ -151,37 +213,6 @@ body {
   overflow: hidden;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
   z-index: 1;
-  perspective: 1000px;
-}
-
-/* Holographic light sweep */
-.mega-card::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    115deg,
-    transparent 40%,
-    rgba(52, 211, 153, 0.06) 45%,
-    rgba(6, 182, 212, 0.08) 50%,
-    rgba(139, 92, 246, 0.06) 55%,
-    transparent 60%
-  );
-  transform: translateX(-100%) rotate(0deg);
-  transition: none;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.mega-card:hover::after {
-  animation: light-sweep 0.8s ease forwards;
-}
-
-@keyframes light-sweep {
-  to { transform: translateX(60%) rotate(0deg); }
 }
 
 /* Rotating border */
@@ -287,16 +318,6 @@ body {
   0% { transform: scale(1); }
   50% { transform: scale(1.03); background: rgba(255, 255, 255, 0.04); }
   100% { transform: scale(1); background: rgba(255, 255, 255, 0.02); }
-}
-
-/* Status badge pulse */
-.status-badge {
-  animation: badge-glow 2s ease-in-out infinite;
-}
-
-@keyframes badge-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.3); }
-  50% { box-shadow: 0 0 12px 2px rgba(52, 211, 153, 0.15); }
 }
 
 /* Arrow slide on hover */
@@ -441,21 +462,6 @@ body {
   color: #6ee7b7;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(52, 211, 153, 0.1);
-}
-
-/* ═══ PULSING STATUS DOT ═══ */
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #34d399;
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
 }
 
 /* ═══ BLINKING CURSOR ═══ */
