@@ -72,24 +72,63 @@ function MailIcon({ className }: { className?: string }) {
   );
 }
 
+/* Neural network SVG background — nodes and connections */
+function NeuralNetBg() {
+  // 4 layers of nodes with connections
+  const layers = [
+    { x: 80, nodes: [80, 160, 240, 320, 400] },
+    { x: 280, nodes: [100, 200, 300, 380] },
+    { x: 480, nodes: [120, 220, 320] },
+    { x: 680, nodes: [160, 280] },
+    { x: 880, nodes: [220] },
+  ];
+
+  const lines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+  for (let i = 0; i < layers.length - 1; i++) {
+    for (const y1 of layers[i].nodes) {
+      for (const y2 of layers[i + 1].nodes) {
+        lines.push({ x1: layers[i].x, y1, x2: layers[i + 1].x, y2 });
+      }
+    }
+  }
+
+  return (
+    <div className="neural-bg">
+      <svg
+        viewBox="0 0 960 480"
+        className="w-full h-full"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Connections */}
+        {lines.map((l, i) => (
+          <line
+            key={`l${i}`}
+            x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+            stroke="rgba(52, 211, 153, 0.4)"
+            strokeWidth="0.5"
+          />
+        ))}
+        {/* Nodes */}
+        {layers.map((layer, li) =>
+          layer.nodes.map((y, ni) => (
+            <circle
+              key={`n${li}-${ni}`}
+              cx={layer.x} cy={y} r="3"
+              fill="rgba(52, 211, 153, 0.5)"
+            />
+          ))
+        )}
+      </svg>
+    </div>
+  );
+}
+
 function VennDiagram() {
   return (
     <div className="relative venn-container">
-      <svg viewBox="0 0 320 300" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 280 260" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          {/* Circle glow filters */}
-          <filter id="glow-emerald">
-            <feGaussianBlur stdDeviation="6" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="glow-cyan">
-            <feGaussianBlur stdDeviation="6" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="glow-violet">
-            <feGaussianBlur stdDeviation="6" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
           <filter id="glow-center">
             <feGaussianBlur stdDeviation="8" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
@@ -98,100 +137,57 @@ function VennDiagram() {
 
         {/* Math circle — top left */}
         <circle
-          cx="130" cy="115" r="90"
+          cx="115" cy="105" r="85"
           fill="rgba(52, 211, 153, 0.15)"
           stroke="rgba(52, 211, 153, 0.25)"
           strokeWidth="1"
           className="venn-circle venn-circle-1"
-          filter="url(#glow-emerald)"
         />
 
         {/* Finance circle — top right */}
         <circle
-          cx="190" cy="115" r="90"
+          cx="165" cy="105" r="85"
           fill="rgba(6, 182, 212, 0.15)"
           stroke="rgba(6, 182, 212, 0.25)"
           strokeWidth="1"
           className="venn-circle venn-circle-2"
-          filter="url(#glow-cyan)"
         />
 
         {/* AI circle — bottom center */}
         <circle
-          cx="160" cy="175" r="90"
+          cx="140" cy="155" r="85"
           fill="rgba(139, 92, 246, 0.15)"
           stroke="rgba(139, 92, 246, 0.25)"
           strokeWidth="1"
           className="venn-circle venn-circle-3"
-          filter="url(#glow-violet)"
         />
-
-        {/* Intersection labels — pairwise */}
-        <text x="160" y="92" textAnchor="middle" className="fill-zinc-600" fontSize="9" fontFamily="monospace">
-          quant models
-        </text>
-        <text x="108" y="162" textAnchor="middle" className="fill-zinc-600" fontSize="9" fontFamily="monospace">
-          optimization
-        </text>
-        <text x="212" y="162" textAnchor="middle" className="fill-zinc-600" fontSize="9" fontFamily="monospace">
-          algo trading
-        </text>
 
         {/* Main labels */}
         <g className="venn-label venn-label-1">
-          <text x="85" y="80" textAnchor="middle" fontSize="14" fontWeight="bold" className="fill-emerald-400">
+          <text x="72" y="75" textAnchor="middle" fontSize="15" fontWeight="bold" className="fill-emerald-400">
             Math
-          </text>
-          <text x="85" y="93" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-emerald-400/50">
-            {"\u2207 \u222B \u03A3 \u03C0"}
           </text>
         </g>
 
         <g className="venn-label venn-label-2">
-          <text x="235" y="80" textAnchor="middle" fontSize="14" fontWeight="bold" className="fill-cyan-400">
+          <text x="208" y="75" textAnchor="middle" fontSize="15" fontWeight="bold" className="fill-cyan-400">
             Finance
-          </text>
-          <text x="235" y="93" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-cyan-400/50">
-            {"$ \u0394 \u03B1 \u03B2"}
           </text>
         </g>
 
         <g className="venn-label venn-label-3">
-          <text x="160" y="245" textAnchor="middle" fontSize="14" fontWeight="bold" className="fill-violet-400">
+          <text x="140" y="228" textAnchor="middle" fontSize="15" fontWeight="bold" className="fill-violet-400">
             AI
-          </text>
-          <text x="160" y="258" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-violet-400/50">
-            {"\u2207\u03B8 f(x) \u2248 0"}
           </text>
         </g>
 
         {/* Center — "me" */}
         <g className="venn-me" filter="url(#glow-center)">
-          <circle cx="160" cy="135" r="18" fill="rgba(52, 211, 153, 0.12)" stroke="rgba(52, 211, 153, 0.4)" strokeWidth="1.5" />
-          <text x="160" y="139" textAnchor="middle" fontSize="13" fontWeight="bold" className="fill-white">
+          <circle cx="140" cy="120" r="20" fill="rgba(52, 211, 153, 0.12)" stroke="rgba(52, 211, 153, 0.4)" strokeWidth="1.5" />
+          <text x="140" y="125" textAnchor="middle" fontSize="14" fontWeight="bold" className="fill-white">
             me
           </text>
         </g>
-
-        {/* Floating decorative formulas */}
-        <text x="30" y="40" fontSize="10" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
-          E = mc&sup2;
-        </text>
-        <text x="250" y="35" fontSize="9" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
-          P(A|B)
-        </text>
-        <text x="15" y="270" fontSize="9" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
-          {"\u2202L/\u2202w"}
-        </text>
-        <text x="270" y="280" fontSize="10" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.3">
-          {"\u03A3 r\u1D62\u00B7w\u1D62"}
-        </text>
-        <text x="40" y="155" fontSize="8" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.2">
-          Black-Scholes
-        </text>
-        <text x="260" y="200" fontSize="8" fontFamily="Georgia, serif" className="fill-zinc-700" opacity="0.2">
-          softmax
-        </text>
       </svg>
     </div>
   );
@@ -201,6 +197,7 @@ export default function Home() {
   return (
     <div className="min-h-screen dot-grid noise relative">
       <div className="aurora" />
+      <NeuralNetBg />
 
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 glass">
@@ -268,7 +265,7 @@ export default function Home() {
             </div>
 
             {/* Right — Venn Diagram */}
-            <div className="hidden lg:block w-[340px] shrink-0 animate-fade-in animate-delay-4">
+            <div className="hidden lg:block w-[320px] shrink-0 animate-fade-in animate-delay-4">
               <VennDiagram />
             </div>
           </div>
@@ -350,8 +347,8 @@ export default function Home() {
                     key={item.title}
                     className="feature-cell rounded-lg border border-white/[0.04] bg-white/[0.015] p-4 group-hover:border-white/[0.08] transition-all"
                   >
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-emerald-400/60 font-mono text-sm">{item.icon}</span>
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <span className="text-emerald-400/80 text-lg leading-none">{item.icon}</span>
                       <h4 className="text-sm font-semibold text-white">
                         {item.title}
                       </h4>
@@ -470,8 +467,8 @@ export default function Home() {
                     key={item.title}
                     className="feature-cell rounded-lg border border-white/[0.04] bg-white/[0.015] p-4 group-hover:border-white/[0.08] transition-all"
                   >
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-violet-400/60 font-mono text-sm">{item.icon}</span>
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <span className="text-violet-400/80 text-lg leading-none">{item.icon}</span>
                       <h4 className="text-sm font-semibold text-white">
                         {item.title}
                       </h4>
