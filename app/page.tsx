@@ -88,11 +88,11 @@ export default function Home() {
             <a href="#projects" className="hover:text-white transition-colors">
               Projects
             </a>
-            <a href="#writing" className="hover:text-white transition-colors">
-              Writing
-            </a>
             <a href="#research" className="hover:text-white transition-colors">
               Research
+            </a>
+            <a href="#writing" className="hover:text-white transition-colors">
+              Writing
             </a>
             <a href="#skills" className="hover:text-white transition-colors">
               Skills
@@ -148,9 +148,10 @@ export default function Home() {
             About
           </h2>
           <p className="text-lg text-zinc-300 leading-relaxed">
-            Systems Analyst interested in the intersection of AI research and
-            AI systems design, particularly in the financial domain. I love
-            math and enjoy turning that into practical systems that work.
+            I am a Systems Analyst who works at the intersection of AI
+            research and AI systems design. I am particularly interested in
+            applying these to the financial domain. I love math and enjoy
+            grounding that intuition into systems that solve real problems.
           </p>
         </div>
       </section>
@@ -266,53 +267,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Writing */}
-      <section id="writing" className="py-14 px-6 border-t border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
-            Writing
-          </h2>
-
-          <a
-            href="https://dev.to/bhattaraisubaleng/hybrid-rag-system-over-sec-filings-2gj8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 hover:border-zinc-700 transition-colors group"
-          >
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
-                  Building a Multi-Route RAG System Over SEC Filings
-                </h3>
-                <p className="text-xs text-zinc-500 mt-1 font-mono">
-                  dev.to &middot; Deep Dive
-                </p>
-              </div>
-              <ExternalIcon className="h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors shrink-0 mt-1" />
-            </div>
-            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-              A detailed walkthrough of every design decision behind the SEC
-              Filing Intelligence Engine — from the naive prototype that
-              hallucinated revenue numbers, through domain-specific nightmares
-              (fiscal year mismatches, XBRL tag renames, Q4 derivation), to
-              the 5-route retrieval architecture that finally worked.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {["RAG", "Python", "AI", "Fintech", "System Design"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 rounded-md bg-zinc-800 text-xs font-mono text-zinc-500"
-                  >
-                    {tag}
-                  </span>
-                )
-              )}
-            </div>
-          </a>
-        </div>
-      </section>
-
       {/* Informal Research */}
       <section id="research" className="py-14 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -331,7 +285,7 @@ export default function Home() {
                 </p>
               </div>
               <a
-                href="https://github.com/bhattaraisubal-eng/Agent-Security"
+                href="https://github.com/bhattaraisubal-eng/RAG-poisoning"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-white transition-colors"
@@ -400,6 +354,53 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Writing */}
+      <section id="writing" className="py-14 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
+            Writing
+          </h2>
+
+          <a
+            href="https://dev.to/bhattaraisubaleng/hybrid-rag-system-over-sec-filings-2gj8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 hover:border-zinc-700 transition-colors group"
+          >
+            <div className="flex items-start justify-between mb-3">
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  Building a Multi-Route RAG System Over SEC Filings
+                </h3>
+                <p className="text-xs text-zinc-500 mt-1 font-mono">
+                  dev.to &middot; Deep Dive
+                </p>
+              </div>
+              <ExternalIcon className="h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors shrink-0 mt-1" />
+            </div>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+              A detailed walkthrough of every design decision behind the SEC
+              Filing Intelligence Engine — from the naive prototype that
+              hallucinated revenue numbers, through domain-specific nightmares
+              (fiscal year mismatches, XBRL tag renames, Q4 derivation), to
+              the 5-route retrieval architecture that finally worked.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {["RAG", "Python", "AI", "Fintech", "System Design"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded-md bg-zinc-800 text-xs font-mono text-zinc-500"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </a>
         </div>
       </section>
 
