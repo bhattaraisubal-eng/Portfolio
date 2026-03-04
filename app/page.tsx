@@ -77,7 +77,7 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-mono text-sm font-semibold text-white">
             SB
           </span>
@@ -105,8 +105,8 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section className="pt-28 pb-14 px-6">
+        <div className="max-w-6xl mx-auto">
           <div className="animate-fade-up">
             <p className="text-sm font-mono text-emerald-400 mb-4">
               Hi, I&apos;m
@@ -142,30 +142,22 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-20 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
+      <section id="about" className="py-14 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">
             About
           </h2>
-          <p className="text-lg text-zinc-300 leading-relaxed max-w-2xl">
-            I&apos;m a Systems Analyst who bridges the gap between business
-            requirements and technical solutions. My passion lies in applying
-            machine learning and AI to solve real-world problems — from
-            building RAG pipelines over financial filings to designing
-            data-intensive applications that scale.
-          </p>
-          <p className="text-lg text-zinc-300 leading-relaxed max-w-2xl mt-4">
-            I enjoy working across the full stack: designing databases,
-            building APIs, training models, and creating intuitive interfaces.
-            Currently focused on NLP, retrieval-augmented generation, and
-            making financial data more accessible through AI.
+          <p className="text-lg text-zinc-300 leading-relaxed">
+            Systems Analyst interested in the intersection of AI research and
+            AI systems design, particularly in the financial domain. I love
+            math and enjoy turning that into practical systems that work.
           </p>
         </div>
       </section>
 
       {/* Projects */}
-      <section id="projects" className="py-20 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
+      <section id="projects" className="py-14 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Projects
           </h2>
@@ -275,8 +267,8 @@ export default function Home() {
       </section>
 
       {/* Writing */}
-      <section id="writing" className="py-20 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
+      <section id="writing" className="py-14 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Writing
           </h2>
@@ -322,8 +314,8 @@ export default function Home() {
       </section>
 
       {/* Informal Research */}
-      <section id="research" className="py-20 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
+      <section id="research" className="py-14 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Informal Research
           </h2>
@@ -412,8 +404,8 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="py-20 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
+      <section id="skills" className="py-14 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Skills
           </h2>
@@ -440,8 +432,8 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-20 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto text-center">
+      <section id="contact" className="py-14 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">
             Contact
           </h2>
@@ -471,7 +463,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <p className="text-xs text-zinc-600 font-mono">
             Built by Subal Bhattarai
           </p>
