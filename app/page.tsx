@@ -74,30 +74,30 @@ function MailIcon({ className }: { className?: string }) {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen dot-grid">
       {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md">
+      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <span className="font-mono text-sm font-semibold text-white">
+          <span className="font-mono text-sm font-bold gradient-text">
             SB
           </span>
-          <div className="flex items-center gap-6 text-sm text-zinc-400">
-            <a href="#about" className="hover:text-white transition-colors">
+          <div className="flex items-center gap-6 text-sm text-zinc-500">
+            <a href="#about" className="nav-link hover:text-white transition-colors">
               About
             </a>
-            <a href="#projects" className="hover:text-white transition-colors">
+            <a href="#projects" className="nav-link hover:text-white transition-colors">
               Projects
             </a>
-            <a href="#research" className="hover:text-white transition-colors">
+            <a href="#research" className="nav-link hover:text-white transition-colors">
               Research
             </a>
-            <a href="#writing" className="hover:text-white transition-colors">
+            <a href="#writing" className="nav-link hover:text-white transition-colors">
               Writing
             </a>
-            <a href="#skills" className="hover:text-white transition-colors">
+            <a href="#skills" className="nav-link hover:text-white transition-colors">
               Skills
             </a>
-            <a href="#contact" className="hover:text-white transition-colors">
+            <a href="#contact" className="nav-link hover:text-white transition-colors">
               Contact
             </a>
           </div>
@@ -105,33 +105,34 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-28 pb-14 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative pt-28 pb-14 px-6 overflow-hidden">
+        <div className="hero-orb top-10 -right-40" />
+        <div className="max-w-6xl mx-auto relative">
           <div className="animate-fade-up">
-            <p className="text-sm font-mono text-emerald-400 mb-4">
+            <p className="text-sm font-mono text-emerald-400/80 mb-4 animate-delay-1">
               Hi, I&apos;m
             </p>
-            <h1 className="text-5xl font-bold text-white tracking-tight mb-4">
-              Subal Bhattarai
+            <h1 className="text-6xl font-bold tracking-tight mb-5">
+              <span className="gradient-text">Subal Bhattarai</span>
             </h1>
-            <p className="text-xl text-zinc-400 max-w-xl leading-relaxed mb-8">
+            <p className="text-xl text-zinc-400 max-w-2xl leading-relaxed mb-8 animate-fade-up animate-delay-2">
               Systems Analyst with a real passion for ML and AI projects.
               I build intelligent systems that turn complex data into
               actionable insights.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 animate-fade-up animate-delay-3">
               <a
                 href="https://github.com/bhattaraisubal-eng"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white text-black text-sm font-medium hover:bg-zinc-200 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-400 text-black text-sm font-semibold hover:from-emerald-400 hover:to-teal-300 transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30"
               >
                 <GithubIcon className="h-4 w-4" />
                 GitHub
               </a>
               <a
                 href="mailto:bhattaraisubal@gmail.com"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-zinc-700 text-sm font-medium text-zinc-300 hover:border-zinc-500 hover:text-white transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-700 text-sm font-medium text-zinc-300 hover:border-emerald-500/50 hover:text-white transition-all"
               >
                 <MailIcon className="h-4 w-4" />
                 Get in Touch
@@ -142,29 +143,27 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-14 px-6 border-t border-white/5">
+      <section id="about" className="py-14 px-6 section-divider">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">
             About
           </h2>
-          <p className="text-lg text-zinc-300 leading-relaxed">
-            I am a Systems Analyst who works at the intersection of AI
-            research and AI systems design. I am particularly interested in
-            applying these to the financial domain. I love math and enjoy
-            grounding that intuition into systems that solve real problems.
+          <p className="text-2xl text-zinc-200 leading-relaxed font-light max-w-3xl">
+            I am a Systems Analyst who loves math, finance, and AI. Looking
+            for opportunities at the intersection of it.
           </p>
         </div>
       </section>
 
       {/* Projects */}
-      <section id="projects" className="py-14 px-6 border-t border-white/5">
+      <section id="projects" className="py-14 px-6 section-divider">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Projects
           </h2>
 
-          {/* SEC RAG System — Hero Project */}
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-8 hover:border-zinc-700 transition-colors">
+          {/* SEC RAG System */}
+          <div className="glow-card rounded-xl border border-zinc-800 bg-zinc-900/50 p-8">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-2xl font-bold text-white">
@@ -202,7 +201,6 @@ export default function Home() {
               vector search across 10-K and 10-Q filings from 2010 to present.
             </p>
 
-            {/* Architecture highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               {[
                 {
@@ -224,7 +222,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-lg border border-zinc-800 bg-zinc-900 p-3"
+                  className="rounded-lg border border-zinc-800 bg-zinc-900/80 p-3 hover:border-zinc-700 transition-colors"
                 >
                   <h4 className="text-sm font-semibold text-white mb-1">
                     {item.title}
@@ -236,7 +234,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Tech tags */}
             <div className="flex flex-wrap gap-2">
               {[
                 "Python",
@@ -252,7 +249,7 @@ export default function Home() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="px-2.5 py-1 rounded-md bg-zinc-800 text-xs font-mono text-zinc-400"
+                  className="tag-glow px-2.5 py-1 rounded-md bg-zinc-800/80 border border-transparent text-xs font-mono text-zinc-400"
                 >
                   {tag}
                 </span>
@@ -260,7 +257,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Placeholder for future projects */}
           <p className="text-sm text-zinc-600 mt-8 text-center font-mono">
             More projects coming soon.
           </p>
@@ -268,13 +264,13 @@ export default function Home() {
       </section>
 
       {/* Informal Research */}
-      <section id="research" className="py-14 px-6 border-t border-white/5">
+      <section id="research" className="py-14 px-6 section-divider">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Informal Research
           </h2>
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-8 hover:border-zinc-700 transition-colors">
+          <div className="glow-card rounded-xl border border-zinc-800 bg-zinc-900/50 p-8">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-2xl font-bold text-white">
@@ -324,7 +320,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-lg border border-zinc-800 bg-zinc-900 p-3"
+                  className="rounded-lg border border-zinc-800 bg-zinc-900/80 p-3 hover:border-zinc-700 transition-colors"
                 >
                   <h4 className="text-sm font-semibold text-white mb-1">
                     {item.title}
@@ -347,7 +343,7 @@ export default function Home() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="px-2.5 py-1 rounded-md bg-zinc-800 text-xs font-mono text-zinc-400"
+                  className="tag-glow px-2.5 py-1 rounded-md bg-zinc-800/80 border border-transparent text-xs font-mono text-zinc-400"
                 >
                   {tag}
                 </span>
@@ -358,7 +354,7 @@ export default function Home() {
       </section>
 
       {/* Writing */}
-      <section id="writing" className="py-14 px-6 border-t border-white/5">
+      <section id="writing" className="py-14 px-6 section-divider">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Writing
@@ -368,7 +364,7 @@ export default function Home() {
             href="https://dev.to/bhattaraisubaleng/hybrid-rag-system-over-sec-filings-2gj8"
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 hover:border-zinc-700 transition-colors group"
+            className="glow-card block rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 group"
           >
             <div className="flex items-start justify-between mb-3">
               <div>
@@ -405,7 +401,7 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="py-14 px-6 border-t border-white/5">
+      <section id="skills" className="py-14 px-6 section-divider">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Skills
@@ -420,7 +416,7 @@ export default function Home() {
                   {items.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 rounded-md border border-zinc-800 text-xs font-mono text-zinc-400 hover:border-zinc-600 hover:text-zinc-300 transition-colors"
+                      className="tag-glow px-2.5 py-1 rounded-md border border-zinc-800 text-xs font-mono text-zinc-400"
                     >
                       {skill}
                     </span>
@@ -433,7 +429,7 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-14 px-6 border-t border-white/5">
+      <section id="contact" className="py-14 px-6 section-divider">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">
             Contact
@@ -444,7 +440,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4">
             <a
               href="mailto:bhattaraisubal@gmail.com"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-500 text-black text-sm font-semibold hover:bg-emerald-400 transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-400 text-black text-sm font-semibold hover:from-emerald-400 hover:to-teal-300 transition-all shadow-lg shadow-emerald-500/20"
             >
               <MailIcon className="h-4 w-4" />
               bhattaraisubal@gmail.com
@@ -453,7 +449,7 @@ export default function Home() {
               href="https://github.com/bhattaraisubal-eng"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-700 text-sm font-medium text-zinc-300 hover:border-zinc-500 hover:text-white transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-700 text-sm font-medium text-zinc-300 hover:border-emerald-500/50 hover:text-white transition-all"
             >
               <GithubIcon className="h-4 w-4" />
               GitHub
@@ -463,7 +459,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-white/5">
+      <footer className="py-8 px-6 section-divider">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-xs text-zinc-600 font-mono">
             Built by Subal Bhattarai
