@@ -91,6 +91,9 @@ export default function Home() {
             <a href="#writing" className="hover:text-white transition-colors">
               Writing
             </a>
+            <a href="#research" className="hover:text-white transition-colors">
+              Research
+            </a>
             <a href="#skills" className="hover:text-white transition-colors">
               Skills
             </a>
@@ -315,6 +318,96 @@ export default function Home() {
               )}
             </div>
           </a>
+        </div>
+      </section>
+
+      {/* Informal Research */}
+      <section id="research" className="py-20 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
+            Informal Research
+          </h2>
+
+          <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-8 hover:border-zinc-700 transition-colors">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h3 className="text-2xl font-bold text-white">
+                  RAG Poisoning in Multi-Agent LLM Systems
+                </h3>
+                <p className="text-sm text-zinc-500 mt-1 font-mono">
+                  Simple Experiment
+                </p>
+              </div>
+              <a
+                href="https://github.com/bhattaraisubal-eng/Agent-Security"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-white transition-colors"
+              >
+                <GithubIcon className="h-5 w-5" />
+              </a>
+            </div>
+
+            <p className="text-zinc-300 leading-relaxed mb-6">
+              A simple experiment exploring how poisoned documents in a RAG
+              knowledge base can manipulate multi-agent LLM systems into
+              exfiltrating sensitive data. The simulation uses an orchestrator
+              agent that reads from a shared knowledge base and delegates tasks
+              to a worker agent with database and email access, testing whether
+              injected payloads can trigger unauthorized PII extraction.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+              {[
+                {
+                  title: "Controlled Simulation",
+                  desc: "Two-agent pipeline with orchestrator and worker roles, mock customer database, and email outbox for measuring exfiltration",
+                },
+                {
+                  title: "Payload Injection",
+                  desc: "Tests multiple attack strategies including direct instruction, authority impersonation, and multi-step social engineering",
+                },
+                {
+                  title: "Statistical Analysis",
+                  desc: "Chi-squared and Fisher\u2019s exact tests comparing exfiltration rates between poisoned and clean knowledge bases",
+                },
+                {
+                  title: "Defense Evaluation",
+                  desc: "Measures baseline vs. attacked success rates to quantify how vulnerable current LLM agent architectures are",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-lg border border-zinc-800 bg-zinc-900 p-3"
+                >
+                  <h4 className="text-sm font-semibold text-white mb-1">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-zinc-500 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Python",
+                "OpenAI API",
+                "Multi-Agent Systems",
+                "RAG",
+                "Security Research",
+                "Statistical Testing",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2.5 py-1 rounded-md bg-zinc-800 text-xs font-mono text-zinc-400"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
