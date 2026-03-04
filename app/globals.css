@@ -199,6 +199,70 @@ body {
   50% { filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.6)); }
 }
 
+/* ═══ ANIMATED NEURAL NETWORK ═══ */
+
+/* Data pulse traveling along a connection */
+.nn-pulse {
+  stroke-dasharray: 8 40;
+  stroke-dashoffset: 48;
+  animation: nn-flow 3s linear infinite;
+}
+
+/* Stagger the pulses so they don't all fire at once */
+.nn-pulse-d1 { animation-delay: 0s; }
+.nn-pulse-d2 { animation-delay: 0.4s; }
+.nn-pulse-d3 { animation-delay: 0.8s; }
+.nn-pulse-d4 { animation-delay: 1.2s; }
+.nn-pulse-d5 { animation-delay: 1.6s; }
+.nn-pulse-d6 { animation-delay: 2.0s; }
+.nn-pulse-d7 { animation-delay: 2.4s; }
+.nn-pulse-d8 { animation-delay: 0.2s; }
+.nn-pulse-d9 { animation-delay: 0.6s; }
+.nn-pulse-d10 { animation-delay: 1.0s; }
+.nn-pulse-d11 { animation-delay: 1.4s; }
+.nn-pulse-d12 { animation-delay: 1.8s; }
+
+@keyframes nn-flow {
+  to { stroke-dashoffset: -48; }
+}
+
+/* Nodes glow in layers with staggered timing */
+.nn-node {
+  animation: nn-node-glow 3s ease-in-out infinite;
+}
+
+.nn-node-l0 { animation-delay: 0s; }
+.nn-node-l1 { animation-delay: 0.6s; }
+.nn-node-l2 { animation-delay: 1.2s; }
+.nn-node-l3 { animation-delay: 1.8s; }
+
+@keyframes nn-node-glow {
+  0%, 100% {
+    r: 4;
+    opacity: 0.4;
+    filter: drop-shadow(0 0 0px rgba(52, 211, 153, 0));
+  }
+  50% {
+    r: 5.5;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.5));
+  }
+}
+
+/* The outer ring pulse on the output node */
+.nn-output-ring {
+  animation: nn-ring-expand 3s ease-in-out infinite;
+  animation-delay: 2.2s;
+  transform-origin: center;
+}
+
+@keyframes nn-ring-expand {
+  0%, 100% { r: 8; opacity: 0; stroke-width: 1.5; }
+  30% { opacity: 0.4; }
+  70% { opacity: 0.2; }
+  100% { r: 16; opacity: 0; stroke-width: 0.5; }
+}
+
 /* ═══ MEGA CARD — TERMINAL WINDOW ═══ */
 
 .mega-card {

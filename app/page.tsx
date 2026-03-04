@@ -124,6 +124,95 @@ function NeuralNetBg() {
   );
 }
 
+function AnimatedNeuralNet() {
+  // 4-layer network: 4 → 5 → 4 → 2
+  const layers = [
+    { x: 30, ys: [45, 105, 165, 225] },
+    { x: 110, ys: [25, 75, 125, 175, 225] },
+    { x: 190, ys: [45, 105, 165, 225] },
+    { x: 270, ys: [105, 165] },
+  ];
+
+  // Build connections between adjacent layers
+  const connections: { x1: number; y1: number; x2: number; y2: number; delay: number }[] = [];
+  let ci = 0;
+  for (let l = 0; l < layers.length - 1; l++) {
+    for (const y1 of layers[l].ys) {
+      for (const y2 of layers[l + 1].ys) {
+        connections.push({ x1: layers[l].x, y1, x2: layers[l + 1].x, y2, delay: ci % 12 });
+        ci++;
+      }
+    }
+  }
+
+  return (
+    <svg viewBox="0 0 300 270" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="nn-glow">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+
+      {/* Static connection lines (faint) */}
+      {connections.map((c, i) => (
+        <line
+          key={`s${i}`}
+          x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2}
+          stroke="rgba(52, 211, 153, 0.08)"
+          strokeWidth="1"
+        />
+      ))}
+
+      {/* Animated pulse lines */}
+      {connections.map((c, i) => (
+        <line
+          key={`p${i}`}
+          x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2}
+          stroke="rgba(52, 211, 153, 0.6)"
+          strokeWidth="1.5"
+          className={`nn-pulse nn-pulse-d${(c.delay % 12) + 1}`}
+          strokeLinecap="round"
+        />
+      ))}
+
+      {/* Nodes */}
+      {layers.map((layer, li) =>
+        layer.ys.map((y, ni) => (
+          <circle
+            key={`n${li}-${ni}`}
+            cx={layer.x} cy={y} r="4"
+            fill="rgba(52, 211, 153, 0.5)"
+            stroke="rgba(52, 211, 153, 0.3)"
+            strokeWidth="1"
+            className={`nn-node nn-node-l${li}`}
+            filter="url(#nn-glow)"
+          />
+        ))
+      )}
+
+      {/* Output ring pulse */}
+      {layers[3].ys.map((y, i) => (
+        <circle
+          key={`ring${i}`}
+          cx={layers[3].x} cy={y} r="8"
+          fill="none"
+          stroke="rgba(52, 211, 153, 0.4)"
+          strokeWidth="1.5"
+          className="nn-output-ring"
+          style={{ animationDelay: `${2.2 + i * 0.3}s` }}
+        />
+      ))}
+
+      {/* Layer labels */}
+      <text x="30" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">input</text>
+      <text x="110" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">hidden</text>
+      <text x="190" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">hidden</text>
+      <text x="270" y="260" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-zinc-600">output</text>
+    </svg>
+  );
+}
+
 function VennDiagram() {
   return (
     <div className="relative venn-container">
@@ -230,43 +319,46 @@ export default function Home() {
         <div className="hero-orb hero-orb-1 -top-40 -right-60" />
         <div className="hero-orb hero-orb-2 top-20 -left-40" />
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="flex items-center gap-8 lg:gap-16">
-            {/* Left — text */}
-            <div className="flex-1 animate-fade-up">
-              <p className="text-sm font-mono text-emerald-400/70 mb-3 animate-delay-1">
-                Hi, I&apos;m
-              </p>
-              <h1 className="text-7xl font-bold tracking-tighter mb-4">
-                <span className="gradient-text">Subal Bhattarai</span>
-              </h1>
-              <p className="text-xl gradient-text-subtle max-w-2xl leading-relaxed mb-10 animate-fade-up animate-delay-2 cursor-blink">
-                I am a Systems Analyst who loves math, finance, and AI.
-                Looking for opportunities at the intersection of it
-              </p>
-              <div className="flex items-center gap-4 animate-fade-up animate-delay-3">
-                <a
-                  href="https://github.com/bhattaraisubal-eng"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-black text-sm font-semibold transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
-                >
-                  <GithubIcon className="h-4 w-4" />
-                  GitHub
-                  <ExternalIcon className="h-3 w-3 opacity-0 -ml-1 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                </a>
-                <a
-                  href="mailto:bhattaraisubal@gmail.com"
-                  className="group flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
-                >
-                  <MailIcon className="h-4 w-4" />
-                  bhattaraisubal@gmail.com
-                </a>
-              </div>
+          {/* Text */}
+          <div className="animate-fade-up mb-12">
+            <p className="text-sm font-mono text-emerald-400/70 mb-3 animate-delay-1">
+              Hi, I&apos;m
+            </p>
+            <h1 className="text-7xl font-bold tracking-tighter mb-4">
+              <span className="gradient-text">Subal Bhattarai</span>
+            </h1>
+            <p className="text-xl gradient-text-subtle max-w-2xl leading-relaxed mb-10 animate-fade-up animate-delay-2 cursor-blink">
+              I am a Systems Analyst who loves math, finance, and AI.
+              Looking for opportunities at the intersection of it
+            </p>
+            <div className="flex items-center gap-4 animate-fade-up animate-delay-3">
+              <a
+                href="https://github.com/bhattaraisubal-eng"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-black text-sm font-semibold transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
+              >
+                <GithubIcon className="h-4 w-4" />
+                GitHub
+                <ExternalIcon className="h-3 w-3 opacity-0 -ml-1 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+              </a>
+              <a
+                href="mailto:bhattaraisubal@gmail.com"
+                className="group flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
+              >
+                <MailIcon className="h-4 w-4" />
+                bhattaraisubal@gmail.com
+              </a>
             </div>
+          </div>
 
-            {/* Right — Venn Diagram */}
-            <div className="hidden lg:block w-[320px] shrink-0 animate-fade-in animate-delay-4">
+          {/* Venn + Neural Net side by side */}
+          <div className="hidden lg:flex items-center justify-center gap-12 animate-fade-in animate-delay-4">
+            <div className="w-[280px] shrink-0">
               <VennDiagram />
+            </div>
+            <div className="w-[320px] shrink-0">
+              <AnimatedNeuralNet />
             </div>
           </div>
         </div>
