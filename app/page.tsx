@@ -74,17 +74,20 @@ function MailIcon({ className }: { className?: string }) {
 
 export default function Home() {
   return (
-    <div className="min-h-screen dot-grid">
+    <div className="min-h-screen dot-grid noise relative">
+      {/* Aurora background */}
+      <div className="aurora" />
+
       {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
+      <nav className="fixed top-0 w-full z-50 glass">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <span className="font-mono text-sm font-bold gradient-text">
-            SB
-          </span>
+          <div className="flex items-center gap-2">
+            <div className="status-dot" />
+            <span className="font-mono text-sm font-bold gradient-text">
+              SB
+            </span>
+          </div>
           <div className="flex items-center gap-6 text-sm text-zinc-500">
-            <a href="#about" className="nav-link hover:text-white transition-colors">
-              About
-            </a>
             <a href="#projects" className="nav-link hover:text-white transition-colors">
               Projects
             </a>
@@ -105,34 +108,35 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="relative pt-28 pb-14 px-6 overflow-hidden">
-        <div className="hero-orb top-10 -right-40" />
-        <div className="max-w-6xl mx-auto relative">
+      <section className="relative pt-32 pb-16 px-6 overflow-hidden">
+        <div className="hero-orb hero-orb-1 -top-40 -right-60" />
+        <div className="hero-orb hero-orb-2 top-20 -left-40" />
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="animate-fade-up">
-            <p className="text-sm font-mono text-emerald-400/80 mb-4 animate-delay-1">
+            <p className="text-sm font-mono text-emerald-400/70 mb-3 animate-delay-1">
               Hi, I&apos;m
             </p>
-            <h1 className="text-6xl font-bold tracking-tight mb-5">
+            <h1 className="text-7xl font-bold tracking-tighter mb-4">
               <span className="gradient-text">Subal Bhattarai</span>
             </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl leading-relaxed mb-8 animate-fade-up animate-delay-2">
-              Systems Analyst with a real passion for ML and AI projects.
-              I build intelligent systems that turn complex data into
-              actionable insights.
+            <p className="text-xl gradient-text-subtle max-w-2xl leading-relaxed mb-10 animate-fade-up animate-delay-2 cursor-blink">
+              I am a Systems Analyst who loves math, finance, and AI.
+              Looking for opportunities at the intersection of it
             </p>
             <div className="flex items-center gap-4 animate-fade-up animate-delay-3">
               <a
                 href="https://github.com/bhattaraisubal-eng"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-400 text-black text-sm font-semibold hover:from-emerald-400 hover:to-teal-300 transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30"
+                className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-black text-sm font-semibold transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
               >
                 <GithubIcon className="h-4 w-4" />
                 GitHub
+                <ExternalIcon className="h-3 w-3 opacity-0 -ml-1 group-hover:opacity-100 group-hover:ml-0 transition-all" />
               </a>
               <a
                 href="mailto:bhattaraisubal@gmail.com"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-700 text-sm font-medium text-zinc-300 hover:border-emerald-500/50 hover:text-white transition-all"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
               >
                 <MailIcon className="h-4 w-4" />
                 Get in Touch
@@ -142,31 +146,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="py-14 px-6 section-divider">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">
-            About
-          </h2>
-          <p className="text-2xl text-zinc-200 leading-relaxed font-light max-w-3xl">
-            I am a Systems Analyst who loves math, finance, and AI. Looking
-            for opportunities at the intersection of it.
-          </p>
-        </div>
-      </section>
-
       {/* Projects */}
-      <section id="projects" className="py-14 px-6 section-divider">
+      <section id="projects" className="py-14 px-6 section-divider relative z-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Projects
           </h2>
 
-          {/* SEC RAG System */}
-          <div className="glow-card rounded-xl border border-zinc-800 bg-zinc-900/50 p-8">
+          {/* SEC RAG System — clickable card */}
+          <a
+            href="https://github.com/bhattaraisubal-eng/sec-intelligence-system"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-glow block rounded-xl glass p-8 group cursor-pointer"
+          >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
                   SEC Filing Intelligence Engine
                 </h3>
                 <p className="text-sm text-zinc-500 mt-1 font-mono">
@@ -174,27 +170,14 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <a
-                  href="https://sec-intelligence-system.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
-                >
-                  Live Demo
-                  <ExternalIcon className="h-3.5 w-3.5" />
-                </a>
-                <a
-                  href="https://github.com/bhattaraisubal-eng/sec-intelligence-system"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-zinc-400 hover:text-white transition-colors"
-                >
-                  <GithubIcon className="h-5 w-5" />
-                </a>
+                <span className="flex items-center gap-1.5 text-sm text-emerald-400/60 group-hover:text-emerald-300 transition-colors">
+                  View on GitHub
+                  <ExternalIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
               </div>
             </div>
 
-            <p className="text-zinc-300 leading-relaxed mb-6">
+            <p className="text-zinc-400 leading-relaxed mb-6">
               AI-powered retrieval-augmented generation system for querying SEC
               EDGAR filings using natural language. Covers the top 10 S&amp;P
               500 companies with 1M+ structured XBRL data points and semantic
@@ -222,7 +205,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-lg border border-zinc-800 bg-zinc-900/80 p-3 hover:border-zinc-700 transition-colors"
+                  className="rounded-lg border border-white/[0.04] bg-white/[0.02] p-3 group-hover:border-white/[0.08] transition-colors"
                 >
                   <h4 className="text-sm font-semibold text-white mb-1">
                     {item.title}
@@ -249,48 +232,49 @@ export default function Home() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="tag-glow px-2.5 py-1 rounded-md bg-zinc-800/80 border border-transparent text-xs font-mono text-zinc-400"
+                  className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-zinc-500 group-hover:text-zinc-400 transition-colors"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-          </div>
+          </a>
 
-          <p className="text-sm text-zinc-600 mt-8 text-center font-mono">
+          <p className="text-sm text-zinc-700 mt-8 text-center font-mono">
             More projects coming soon.
           </p>
         </div>
       </section>
 
       {/* Informal Research */}
-      <section id="research" className="py-14 px-6 section-divider">
+      <section id="research" className="py-14 px-6 section-divider relative z-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Informal Research
           </h2>
 
-          <div className="glow-card rounded-xl border border-zinc-800 bg-zinc-900/50 p-8">
+          <a
+            href="https://github.com/bhattaraisubal-eng/RAG-poisoning"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-glow block rounded-xl glass p-8 group cursor-pointer"
+          >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
                   RAG Poisoning in Multi-Agent LLM Systems
                 </h3>
                 <p className="text-sm text-zinc-500 mt-1 font-mono">
                   Simple Experiment
                 </p>
               </div>
-              <a
-                href="https://github.com/bhattaraisubal-eng/RAG-poisoning"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-white transition-colors"
-              >
-                <GithubIcon className="h-5 w-5" />
-              </a>
+              <span className="flex items-center gap-1.5 text-sm text-emerald-400/60 group-hover:text-emerald-300 transition-colors shrink-0">
+                View on GitHub
+                <ExternalIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </div>
 
-            <p className="text-zinc-300 leading-relaxed mb-6">
+            <p className="text-zinc-400 leading-relaxed mb-6">
               A simple experiment exploring how poisoned documents in a RAG
               knowledge base can manipulate multi-agent LLM systems into
               exfiltrating sensitive data. The simulation uses an orchestrator
@@ -320,7 +304,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-lg border border-zinc-800 bg-zinc-900/80 p-3 hover:border-zinc-700 transition-colors"
+                  className="rounded-lg border border-white/[0.04] bg-white/[0.02] p-3 group-hover:border-white/[0.08] transition-colors"
                 >
                   <h4 className="text-sm font-semibold text-white mb-1">
                     {item.title}
@@ -343,18 +327,18 @@ export default function Home() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="tag-glow px-2.5 py-1 rounded-md bg-zinc-800/80 border border-transparent text-xs font-mono text-zinc-400"
+                  className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-zinc-500 group-hover:text-zinc-400 transition-colors"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-          </div>
+          </a>
         </div>
       </section>
 
       {/* Writing */}
-      <section id="writing" className="py-14 px-6 section-divider">
+      <section id="writing" className="py-14 px-6 section-divider relative z-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Writing
@@ -364,7 +348,7 @@ export default function Home() {
             href="https://dev.to/bhattaraisubaleng/hybrid-rag-system-over-sec-filings-2gj8"
             target="_blank"
             rel="noopener noreferrer"
-            className="glow-card block rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 group"
+            className="card-glow block rounded-xl glass p-6 group"
           >
             <div className="flex items-start justify-between mb-3">
               <div>
@@ -375,7 +359,7 @@ export default function Home() {
                   dev.to &middot; Deep Dive
                 </p>
               </div>
-              <ExternalIcon className="h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors shrink-0 mt-1" />
+              <ExternalIcon className="h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-all shrink-0 mt-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed mb-4">
               A detailed walkthrough of every design decision behind the SEC
@@ -389,7 +373,7 @@ export default function Home() {
                 (tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 rounded-md bg-zinc-800 text-xs font-mono text-zinc-500"
+                    className="px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-zinc-500"
                   >
                     {tag}
                   </span>
@@ -401,7 +385,7 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="py-14 px-6 section-divider">
+      <section id="skills" className="py-14 px-6 section-divider relative z-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-10">
             Skills
@@ -429,18 +413,18 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-14 px-6 section-divider">
+      <section id="contact" className="py-14 px-6 section-divider relative z-10">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">
             Contact
           </h2>
-          <p className="text-lg text-zinc-300 mb-8">
+          <p className="text-lg text-zinc-400 mb-8">
             Interested in collaborating or have a question? Reach out.
           </p>
           <div className="flex items-center justify-center gap-4">
             <a
               href="mailto:bhattaraisubal@gmail.com"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-400 text-black text-sm font-semibold hover:from-emerald-400 hover:to-teal-300 transition-all shadow-lg shadow-emerald-500/20"
+              className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-black text-sm font-semibold transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
             >
               <MailIcon className="h-4 w-4" />
               bhattaraisubal@gmail.com
@@ -449,7 +433,7 @@ export default function Home() {
               href="https://github.com/bhattaraisubal-eng"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-700 text-sm font-medium text-zinc-300 hover:border-emerald-500/50 hover:text-white transition-all"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-700/50 text-sm font-medium text-zinc-300 hover:border-emerald-500/30 hover:text-white hover:bg-white/[0.02] transition-all"
             >
               <GithubIcon className="h-4 w-4" />
               GitHub
@@ -459,9 +443,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 section-divider">
+      <footer className="py-8 px-6 section-divider relative z-10">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-xs text-zinc-600 font-mono">
+          <p className="text-xs text-zinc-700 font-mono">
             Built by Subal Bhattarai
           </p>
         </div>
